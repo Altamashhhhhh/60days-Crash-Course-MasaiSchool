@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            /* border: 1px solid navy; */
+        }
+
+        body {
+            box-sizing: border-box;
+            background-color: lightgray;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        #nav-select {
+            display: none;
+        }
+
+        nav {
+            background-color: rgb(36, 34, 34);
+            color: white;
+        }
+
+        nav ul {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: 50px;
+            align-items: center;
+
+        }
+
+        nav ul li {
+            list-style-type: none;
+        }
+
+        .section div {
+            width: 60%;
+        }
+
+        .section {
+            width: 97%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            
+            background-color: white;
+            
+            border-radius: 20px;
+            padding: 15px 0;
+            margin: 10px auto;
+            
+        }
+
+        .section img {
+            width: 15%;
+        }
+
+        @media all and (max-width:900px) and (min-width:0px) {
+            body{
+                padding: 0;margin: 0;
+            }
+            #navbar {
+                display: none;
+            }
+
+            nav {
+                display: block;
+            }
+
+            #nav-select {
+                display: block;
+            }
+
+            select{
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                font-size: 1.2em;
+                background-color: rgb(36, 34, 34);
+            color: white;
+            }
+
+            .section{
+                display: block;
+                text-align: center;
+                width: 100%;
+               
+              
+
+            }
+            .section div{
+                width: 100%;
+                padding: 10px;
+            }
+            .section img{
+                width: 40%;
+                height: auto;
+            }
+            p{
+                display: block;
+                width: 90%;
+               margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <ul>
+            <li>Home</li>
+            <li>Education</li>
+            <li>Projects</li>
+            <li>Skills</li>
+            <li>Contact</li>
+        </ul>
+
+
+    </nav>
+    <select name="" id="nav-select">
+        <option value="Home">Home</option>
+        <option value="Education">Education</option>
+        <option value="Projects">Projects</option>
+        <option value="Skills">Skills</option>
+        <option value="Contact">Contact</option>
+    </select>
+
+
+    <div class="section">
+        <img src="https://i.pinimg.com/736x/0e/69/8d/0e698d82d948b0dc966403b36adbb02c.jpg" alt="Home">
+        <div>
+            <h1 style="color: green;">Home:</h1>
+            <p>Welcome to my portfolio! I'm John Doe, a creative enthusiast passionate about exploring new horizons.
+                Here, you'll find a showcase of my projects, skills, and experiences. Feel free to explore and get in
+                touch!
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXPttKzrN_92k4Htl1DthZb4kOh-q3bhmjgcFusj2pqw&s"
+            a lt="Education">
+        <div>
+            <h1 style="color: red;">Education:</h1>
+            <p>Education is the cornerstone of my journey. I pursued my Bachelor's degree in Astrophysics from Stellar
+                University. During my academic tenure, I honed my skills in quantum mechanics, celestial mechanics, and
+                data analysis, preparing myself for the dynamic challenges of the professional world.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://cdn-icons-png.flaticon.com/512/1087/1087815.png" alt="Projects">
+        <div>
+            <h1 style="color: darkgoldenrod;">Projects</h1>
+            <p>Dive into my projects, where creativity meets functionality. Each project is a testament to my dedication
+                and expertise in web development. From "Galactic Websites" to "Stellar Apps," I've embraced innovative
+                solutions to real-world problems, delivering tangible results that make a difference.
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <img src="https://cdn-icons-png.flaticon.com/512/6171/6171939.png" alt="Skills">
+        <div>
+            <h1 style="color: purple;">Skills</h1>
+            <p>Here's where I showcase my arsenal of skills. Through hands-on experience and continuous learning, I've
+                mastered various tools and technologies vital to success in the digital realm. From HTML/CSS to
+                JavaScript and beyond, I'm equipped to tackle diverse challenges and contribute effectively to any team.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="section">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtILynjoxvdRMtUu4DP9o7PP97prTiXICsu9Vda3hRUg&s"
+            alt="Contact">
+        <div>
+            <h1 style="color: navy;">Contact</h1>
+            <p>Let's connect! Whether you have a project in mind, want to discuss potential collaborations, or simply
+                have a question, I'm just a message away. Reach out to me via email at john.doe@example.com, and let's
+                start a conversation about how we can work together to bring your ideas to life.
+            </p>
+        </div>
+    </div>
+
+</body>
+
+</html>
