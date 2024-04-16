@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        input,
+        button {
+            border: none;
+        }
+
+        * {
+            border-bottom: 1px solid darkgrey;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        body {
+            font-size: 1.2em;
+        }
+
+        .main {
+            width: 40%;
+            height: 70vh;
+            margin: 80px auto auto auto;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            padding: 40px;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            border-radius: 6px;
+        }
+
+        input {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Check Your BMI</h1>
+        <p>Enter your Weight and Height below to check you BMI results</p>
+        <p>Put your weight in here (KG)</p>
+        <input type="text" id="weight" placeholder="Enter Weigh here in (KG)">
+        <p>and your heights in here (CM)</p>
+        <input type="text" id="height" placeholder="Enter height here in (CM)"> <br>
+        <button id="calculate">Calculate BMI</button>
+        <p id="result">Result : </p>
+    </div>
+</body>
+
+<script>
+
+    let btn = document.querySelector("#calculate").addEventListener("click", calculate);
+
+    function calculate() {
+        let weight = parseFloat(document.querySelector("#weight").value);
+        let height = parseFloat(document.querySelector("#height").value);
+        let result = document.querySelector("#result");
+
+        let bmi = (weight) / (height / 100 * height / 100);
+        bmi = bmi.toFixed(1)
+        if (bmi <= 18.4) {
+            result.innerText = `Result : Your BMI is ${bmi} which means You are underweight`
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+            result.innerText = `Result : Your BMI is ${bmi} which means You are Normal `
+        } else if (bmi >= 25 && bmi <= 29.9) {
+            result.innerText = `Result : Your BMI is ${bmi} which means You are  OverWeight`
+        } else if (bmi >= 30) {
+            result.innerText = `Result : Your BMI is ${bmi} which means You are  Obese`
+        }
+    }
+
+</script>
+
+</html>

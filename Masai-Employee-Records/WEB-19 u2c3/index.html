@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>U2C3</title>
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    /* * {
+      border: 1px solid black;
+      padding: 10px;
+      margin: 10px;
+      border-collapse: collapse;
+      
+    } */
+    h1 {
+      text-align: center;
+      color: #13659d;
+    }
+
+    #delbtn {
+      background-color: red;
+      color: white;
+      text-align: center;
+      padding: 12px;
+    }
+
+    th {
+      padding: 10px;
+      background-color: #13659d;
+      color: white;
+    }
+
+    tr,
+    td {
+      padding: 10px;
+    }
+
+    label {
+      margin: 20px 0 0 0;
+      display: block;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+    }
+
+    form {
+      width: 25%;
+      height: auto;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      padding: 10px;
+    }
+
+    #submit {
+      background-color: #13659d;
+      width: 90%;
+      margin: 10px;
+      padding: 12px;
+      color: white;
+      border: none;
+      font-weight: 500;
+      font-size: 1.1em;
+      border-radius: 50px;
+    }
+
+    #main {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    select {
+      width: 90%;
+      padding: 12px;
+    }
+
+    tr {
+      height: 50px;
+      /* border: 2px solid red; */
+    }
+
+    td,
+    th {
+      height: 100%;
+      /* border: 2px solid red; */
+      border: 1px solid black;
+    }
+
+    
+    tbody{
+      height: 50px ;
+      border: 5px solid blue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Dont make any changes here -->
+  <h1>Masai Employee Records</h1>
+
+  <div id="main">
+    <!-- ***** We are using form here  ****  -->
+    <form>
+      <label for="">Employee Name</label><br />
+      <input id="name" type="text" placeholder="Enter Student Name" /><br />
+      <label for="">Employee ID</label><br />
+      <input id="employeeID" type="number" placeholder="Enter Employee ID" /><br />
+      <label for="">Department </label><br />
+      <select id="department">
+        <option value="">Select Department</option>
+        <option value="Frontend">Frontend</option>
+        <option value="Backend">Backend</option>
+        <option value="Operations">Operations</option>
+        <option value="HR">HR</option>
+        <option value="IA">IA</option>
+      </select><br />
+      <label for="">Experience </label><br />
+      <input id="exp" type="number" placeholder="Experience in Years" /><br />
+      <label for="">Email Address </label><br />
+      <input type="text" id="email" placeholder="Enter Email Address" /><br />
+      <label for="">Mobile Number </label><br />
+      <input id="mbl" type="number" placeholder="Enter Mobile number" /><br />
+      <input id="submit" type="submit" />
+    </form>
+    <table>
+      <!-- Dont change order of columns -->
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Employee ID</th>
+          <th id="dept">Department</th>
+          <th>Experience in years</th>
+          <th>Email address</th>
+          <th>Mobile Number</th>
+          <th>Role</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Append your output here -->
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+  <script>
+
+
+
+
+      let submit = document.querySelector("#submit");
+      submit.addEventListener("click", empInfo);
+
+      let tbody = document.querySelector("tbody");
+
+      function empInfo(event) {
+        event.preventDefault()
+
+
+
+        let tr = document.createElement("tr");
+        tr.id = "tr"
+
+        let name = document.querySelector("#name").value;
+        localStorage.setItem("employee name", name);
+        let empName = localStorage.getItem("employee name")
+        let nametd = document.createElement("td");
+        nametd.innerText = empName;
+
+        let empID = document.querySelector("#employeeID").value;
+        localStorage.setItem("employee id", empID);
+        let empid = localStorage.getItem("employee id")
+        let emptd = document.createElement("td");
+        emptd.innerText = empid;
+
+        let dept = document.querySelector("#department").value;
+        localStorage.setItem("department", dept);
+        let department = localStorage.getItem("department")
+        let deptd = document.createElement("td");
+        deptd.innerText = department;
+
+        let exp = document.querySelector("#exp").value;
+        localStorage.setItem("experience", exp);
+        let experience = localStorage.getItem("experience")
+        let exptd = document.createElement("td");
+        exptd.innerText = experience;
+
+        let email = document.querySelector("#email").value;
+        localStorage.setItem("email", email);
+        let emailid = localStorage.getItem("email")
+        let emailtd = document.createElement("td");
+        emailtd.innerText = emailid;
+
+        let number = document.querySelector("#mbl").value;
+        localStorage.setItem("number", number);
+        let mobNum = localStorage.getItem("number")
+        let numtd = document.createElement("td");
+        numtd.innerText = mobNum;
+
+        let roletd = document.createElement("td");
+
+        let role;
+
+        if (exp <= 1) {
+          role = "Fresher"
+        } else if (exp > 1 && exp < 5) {
+          role = "Junior"
+        } else if (exp >= 5) {
+          role = "Senior"
+        };
+
+        roletd.innerText = role;
+
+        let delbtn = document.createElement("button");
+        delbtn.innerText = "Delete"
+        delbtn.id = "delbtn";
+
+        delbtn.addEventListener("click", deleted);
+
+        function deleted() {
+
+          tbody.removeChild(tr)
+        }
+
+
+
+        tbody.append(tr)
+
+        tr.append(nametd, emptd, deptd, exptd, emailtd, numtd, roletd, delbtn)
+
+      }
+
+
+
+
+
+  </script>
+</body>
+
+</html>

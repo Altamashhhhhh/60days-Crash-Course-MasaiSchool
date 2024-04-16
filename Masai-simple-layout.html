@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masai Simple Layout</title>
+    <style>
+        #banner {
+            width: 40%;
+        }
+        form{
+            width: 20%;
+        }
+        table tr, td , th{
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img id="logo" src="https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/masai_logo.svg" alt=""> <br>
+    <img id="banner" src="https://masai-course.s3.ap-south-1.amazonaws.com/resources/images/masai_banner.jpg" alt="">
+
+    <p>We will be learning the following things this week:</p>
+
+    <table>
+        <tr>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+        </tr>
+
+        <tr>
+            <td>Linux 1</td>
+            <td>HTML</td>
+            <td>Linux 2</td>
+            <td>Linux 3</td>
+        </tr>
+
+        <tr>
+            <td>GIT 1</td>
+            <td>CSS</td>
+            <td>Git 2</td>
+            <td>Bootstrap</td>
+        </tr>
+
+
+    </table>
+
+    <p>If you want to contact me, please fill in this form:</p>
+
+    <form action="" style="display: grid; grid-template-columns: 1fr auto; gap: 10px;"><label for="name">Name: </label>
+        <input type="text"> 
+        <label for="number">Phone no: </label>
+        <input type="number"> 
+        <label for="email">email id: </label>
+        <input type="email">
+    </form>
+
+    <h3>The following things are important to be a programmer </h3>
+
+    <ul>
+        <li>A Problem Solving Mindset</li>
+        <li>Consistency
+        </li>
+        <ul>
+            <li>Clean Code</li>
+            <li>Thorough Knowledge of core concept</li>
+            <li>Readble code</li>
+        </ul>
+        <li>Speed</li>
+    </ul>
+</body>
+
+</html>

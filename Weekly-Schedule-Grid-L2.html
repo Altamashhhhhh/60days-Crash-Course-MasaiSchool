@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Schedule Grid L2</title>
+    <style>
+        * {
+            /* border: 1px solid red; */
+        }
+
+        h1 {
+            font-size: 5em;
+            font-family: cursive;
+            text-align: center;
+        }
+
+        .main {
+            width: 80%;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(10, 1fr);
+            text-align: center;
+            margin: auto;
+            gap: 10px;
+            padding: 10px;
+            font-size: 1.1em;
+        }
+
+        span {
+            color: black;
+            border-radius: 30px;
+            padding: 15px 20px;
+        }
+
+        .heading,
+        .timing {
+            font-weight: 900;
+        }
+
+        #note {
+            grid-column-start: 1;
+            grid-column-end: 7;
+            text-align: left;
+        }
+
+
+        .main span:nth-child(6n+1) {
+            background-color: rgb(165, 230, 255);
+
+
+        }
+
+        .main span:nth-child(6n+2) {
+            background-color: rgb(255, 209, 217);
+        }
+
+        .main span:nth-child(6n+3) {
+            background-color: rgb(231, 231, 162);
+
+        }
+
+        .main span:nth-child(6n+4) {
+            background-color: rgb(255, 209, 217);
+
+        }
+
+        .main span:nth-child(6n+5) {
+            background-color: rgb(231, 231, 162);
+        }
+
+        .main span:nth-child(6n+6) {
+            background-color: rgb(255, 209, 217);
+        }
+
+        #none {
+            display: hidden;
+            background-color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Weekly Schedule</h1>
+    <div class="main">
+
+        <span class="item" id="none"></span>
+        <span class="item heading">Monday</span>
+        <span class="item heading">Tuesday</span>
+        <span class="item heading">Wednesday</span>
+        <span class="item heading">Thursday</span>
+        <span class="item heading">Friday</span>
+
+        <span class="item  timing">08:00</span>
+        <span class="item">html</span>
+        <span class="item">Css</span>
+        <span class="item">Html</span>
+        <span class="item">Python</span>
+        <span class="item">Linux</span>
+
+        <span class="item timing">09:00</span>
+        <span class="item">Css</span>
+        <span class="item">Javascript</span>
+        <span class="item">Html</span>
+        <span class="item">Css</span>
+        <span class="item">Javascript</span>
+
+        <span class="item timing">10:00</span>
+        <span class="item">Javascript</span>
+        <span class="item">python</span>
+        <span class="item">PHP</span>
+        <span class="item">React</span>
+        <span class="item">.NET</span>
+
+        <span class="item timing">11:00</span>
+        <span class="item">TypeScript</span>
+        <span class="item">python</span>
+        <span class="item">PHP</span>
+        <span class="item">React</span>
+        <span class="item">.NET</span>
+
+        <span class="item timing">12:00</span>
+        <span class="item">React</span>
+        <span class="item">python</span>
+        <span class="item">PHP</span>
+        <span class="item">React</span>
+        <span class="item">.NET</span>
+
+        <span class="item timing">13:00</span>
+        <span class="item">Redux</span>
+        <span class="item">python</span>
+        <span class="item">PHP</span>
+        <span class="item">React</span>
+        <span class="item">.NET</span>
+
+        <span class="item timing">14:00</span>
+        <span class="item">Html</span>
+        <span class="item">Css</span>
+        <span class="item">Html</span>
+        <span class="item">Python</span>
+        <span class="item">Linux</span>
+
+        <span class="item timing">15:00</span>
+        <span class="item">Css</span>
+        <span class="item">Javascript</span>
+        <span class="item">Html</span>
+        <span class="item">Css</span>
+        <span class="item">Javascript</span>
+
+        <span class="item timing">16:00</span>
+        <span class="item">Python</span>
+        <span class="item">Python</span>
+        <span class="item">PHP</span>
+        <span class="item">React</span>
+        <span class="item">.NET</span>
+
+        <span id="note"> Note: </span>
+    </div>
+</body>
+
+</html>

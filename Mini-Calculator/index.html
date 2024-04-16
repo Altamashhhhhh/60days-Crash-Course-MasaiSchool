@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100%;
+            height: 300px;
+            margin-top: 100px;
+        }
+
+        .inputs {
+            width: 70%;
+            height: 60px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 40px;
+            gap: 50px;
+        }
+
+        input {
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        input::placeholder {
+            color: black;
+            font-weight: 700;
+        }
+
+        .buttons {
+            width: 60%;
+            height: 60px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            width: 20%;
+            height: 90%;
+            font-weight: 800;
+             border: none;
+             border-radius: 30px;
+        }
+
+        .add {
+            background-color: green;
+            color: white;
+        }
+
+        .subtract {
+            background-color: red;
+            color: white;
+        }
+
+        .multiply {
+            background-color: blue;
+            color: white;
+        }
+
+        .divide {
+            background-color: orange;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="inputs">
+            <input type="text" id="firstInput" placeholder="Enter 1st Number">
+            <input type="text" id="secondInput" placeholder="Enter 2nd Number">
+        </div> <br>
+
+
+        <div class="buttons">
+            <button onclick="add()" class="add">Add</button>
+            <button onclick="subtract()" class="subtract">Subtract</button>
+            <button onclick="multiply()" class="multiply">multiply</button>
+            <button onclick="divide()" class="divide">Divide</button>
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+
+        let firstValue = document.querySelector("#firstInput").value;
+        let secondValue = document.querySelector("#secondInput").value
+
+        function add() {
+            let firstValue = parseFloat(document.querySelector("#firstInput").value)
+            let secondValue = parseFloat(document.querySelector("#secondInput").value)
+            alert(firstValue + secondValue)
+        }
+        function subtract() {
+            let firstValue = parseFloat(document.querySelector("#firstInput").value)
+            let secondValue = parseFloat(document.querySelector("#secondInput").value)
+            alert(firstValue - secondValue)
+        }
+        function multiply() {
+            let firstValue = parseFloat(document.querySelector("#firstInput").value)
+            let secondValue = parseFloat(document.querySelector("#secondInput").value)
+            alert(firstValue * secondValue)
+        }
+        function divide() {
+            let firstValue = parseFloat(document.querySelector("#firstInput").value)
+            let secondValue = parseFloat(document.querySelector("#secondInput").value)
+            alert(firstValue / secondValue)
+        }
+    </script>
+</body>
+
+</html>
