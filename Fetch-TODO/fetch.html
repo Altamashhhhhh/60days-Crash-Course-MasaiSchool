@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 90%;
+            height: auto;
+            margin: auto;
+
+        }
+
+        #box {
+            /* border: 1px solid red; */
+            border-radius: 20px;
+            margin: 20px auto;
+            padding: 5px 20px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        button{
+            display: block;
+            padding: 10px;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="fetch">Fetch TODO</button>
+    <div class="container">
+
+    </div>
+
+
+
+    <script>
+
+
+
+    let container = document.querySelector(".container") ; 
+    let fetchBtn = document.querySelector("#fetch") ; 
+    let toggle = false ; 
+    fetchBtn.addEventListener("click",function() {
+        fetchData("https://jsonplaceholder.typicode.com/todos")})
+
+    function fetchData(link){
+        
+        
+       
+        fetch(link).then(function (response) {
+        return response.json();
+        }).then(function (res) {
+       showData(res) ;
+})
+
+function showData(arr){
+
+                arr.forEach(element => {
+                    let div = document.createElement("div");
+                    div.id = "box";
+                    let p = document.createElement("p");
+                    p.innerText = element.title;
+
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox"
+
+                    checkbox.checked = false;
+                    container.append(div)
+                    div.append(p, checkbox)
+                });
+            }
+
+           
+}
+
+        // let container = document.querySelector(".container");
+        // let fetchbtn = document.querySelector("#fetch")
+
+        // fetchbtn.addEventListener("click", fetchTodo)
+
+
+
+
+        
+        //     function getData(link) {
+
+        //         fetch(link).then(function (response) {
+        //             return response.json();
+
+        //         }).then(function (res) {
+        //             showData(res)
+
+        //         })
+        //     }
+
+           
+
+        // function fetchTodo(link){
+
+        //     function showData(arr) {
+        //         arr.forEach(element => {
+        //             let div = document.createElement("div");
+        //             div.id = "box";
+        //             let p = document.createElement("p");
+        //             p.innerText = element.title;
+
+        //             let checkbox = document.createElement("input");
+        //             checkbox.type = "checkbox"
+
+        //             checkbox.checked = false;
+        //             container.append(div)
+        //             div.append(p, checkbox)
+        //         });
+        //     }
+        //     getData(link)
+            
+            
+
+        // }
+
+        //     fetchTodo("https://jsonplaceholder.typicode.com/todos")
+
+
+        
+
+    </script>
+</body>
+
+</html>
