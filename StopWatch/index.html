@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .main {
+            border: 1px solid black;
+            width: 30%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin: auto;
+            font-size: 1.5em;
+
+        }
+
+        button {
+            padding: 10px 15px;
+            border: 1px solid navy;
+            border-radius: 8px;
+            margin: 10px 20px;
+        }
+        #milisecond{
+            font-size: 0.7em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> STOPWATCH</h1>
+    <div class="main">
+        <div class="showTimer">
+            <p> <span id="hour"> </span> <span id="minute"> </span> <span id="second">0s</span> <span id="milisecond">00</span></p>
+
+        </div>
+        <div class="buttons">
+            <button id="toggle">START</button>
+            <button id="reset">RESET</button>
+        </div>
+    </div>
+
+    <script>
+        let toggleBtn = document.querySelector("#toggle");
+        let resetBtn = document.querySelector("#reset");
+
+
+
+        let milisecond = 0;
+        let second = 0;
+        let minute = 0;
+        let hour = 0;
+        let counter;
+        let running = false;
+
+
+        function start() {
+           
+            milisecond++ ; 
+            document.querySelector("#milisecond").innerText = milisecond ; 
+            if(milisecond === 100){
+                second ++
+                document.querySelector("#second").innerText = second +"s" ; 
+                milisecond = 0 ; 
+                if(second === 61){
+                    minute++
+                    document.querySelector("#minute").innerText = minute  + "m" ; 
+                    second = 0 ; 
+                    if(minute === 61){
+                        hour++; 
+                        document.querySelector("#hour").innerText = hour + "h"; 
+                        minute = 0 ;
+                    }
+                }
+
+
+            }
+            
+
+        }
+        function startStop() {
+            if (!running) {
+                running = true;
+                counter = setInterval(start, 1);
+                toggleBtn.innerText = "STOP"
+
+            } else {
+                running = false;
+                clearInterval(counter);
+                toggleBtn.innerText = "START"
+            }
+
+        }
+
+        function reset() {
+
+            clearInterval(counter);
+            second = 0;
+            minute = 0;
+            hour = 0;
+            document.querySelector("#hour").innerText = "";
+            document.querySelector("#minute").innerText = "";
+            document.querySelector("#second").innerText = "0s";
+            running = false;
+            toggleBtn.innerText = "START";
+
+        }
+
+        toggleBtn.addEventListener("click", startStop);
+        resetBtn.addEventListener("click", reset);
+
+
+
+
+    </script>
+</body>
+
+</html>
