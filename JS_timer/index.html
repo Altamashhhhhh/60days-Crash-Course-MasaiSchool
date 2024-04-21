@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript TIMER</title>
+    <style>
+        .main {
+            width: 40%;
+            height: auto;
+            padding: 30px;
+            margin: 100px auto;
+            text-align: center;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+        p{
+            font-size: 1.2em;
+        }
+        .inputs{
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto ;
+            
+        }
+        input{
+            border: 1px solid black;
+        }
+        input::placeholder{
+            color: black;
+            padding:10px;
+        }
+        .buttons{
+            width: 50%;
+            display: flex;
+            justify-content: space-around;
+            margin:50px  auto 10px auto ;
+        }
+        button{
+            padding: 15px 20px ;
+            border: 1px solid black;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>JAVASCRIPT TIMER</h1>
+        <p><span id="hourShow"></span> <span id="minuteShow"> </span> <span id="secondShow"> </span></p> <br>
+        <div class="inputs">
+            <input type="number" id="hour" placeholder="HOUR"> <br> <br>
+            <input type="number" id="minute" placeholder="MINUTES"> <br> <br>
+            <input type="number" id="second" placeholder="SECONDS"> <br><br>
+        </div>
+        <div class="buttons">
+            <button id="start">START</button>
+            <button id="reset">RESET</button>
+        </div>
+    </div>
+
+    <script>
+
+        let startBtn = document.querySelector("#start");
+        startBtn.addEventListener("click", startTimer);
+        let resetBtn = document.querySelector("#reset");
+        resetBtn.addEventListener("click", resetTimer)
+        let interval;
+        let totalSeconds = 0;
+        let remain = 0;
+
+        function timerFunction() {
+            if (totalSeconds <= 0) {
+                clearInterval(interval);
+                document.querySelector("#hourShow").innerText = "00 ";
+                document.querySelector("#minuteShow").innerText = "00 ";
+                document.querySelector("#secondShow").innerText = "00 ";
+                startBtn.innerText = "START"
+            } else {
+
+                const hour = Math.floor(totalSeconds / 3600);
+                const minute = Math.floor((totalSeconds % 3600) / 60);
+                const second = totalSeconds % 60;
+
+                document.querySelector("#hourShow").innerText = hour;
+                document.querySelector("#minuteShow").innerText = minute;
+                document.querySelector("#secondShow").innerText = second;
+
+
+                totalSeconds--
+            }
+
+        }
+        function startTimer() {
+
+            if (startBtn.innerText === "START") {
+                let hourInput = document.querySelector("#hour").value;
+                let minuteInput = document.querySelector("#minute").value;
+                let secondInput = document.querySelector("#second").value;
+                totalSeconds = hourInput * 3600 + minuteInput * 60 + secondInput * 1;
+
+                interval = setInterval(timerFunction, 10);
+                startBtn.innerText = "STOP"
+            } else if (startBtn.innerText === "STOP") {
+                clearInterval(interval);
+                startBtn.innerText = "START"
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(interval);
+            hour = 0;
+            minute = 0;
+            second = 0;
+            totalSeconds = 0;
+            startBtn.innerText = "START";
+            document.querySelector("#hourShow").innerText = "00 ";
+            document.querySelector("#minuteShow").innerText = "00 ";
+            document.querySelector("#secondShow").innerText = "00 ";
+        }
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
