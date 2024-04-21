@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <style>
+        .image-div {
+            width: 60%;
+            height: 500px;
+            margin: 100px auto 20px auto;
+            overflow: hidden;
+        }
+
+        .image-div img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .buttons {
+            width: 25%;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-weight: 600;
+        }
+
+        #next {
+            background-color: rgb(3, 92, 3);
+            color: white;
+        }
+
+        #previous {
+            background-color: yellow;
+        }
+
+        #start {
+            background-color: blue;
+            color: white;
+        }
+
+        #stop {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-div">
+
+        <img src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" alt="">
+    </div>
+    <div class="buttons">
+
+        <button id="previous">PREVIOUS</button>
+        <button id="start">START</button>
+        <button id="next">NEXT</button>
+    </div>
+
+
+
+    <script>
+        let images = [
+            "https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg",
+            "https://c4.wallpaperflare.com/wallpaper/431/451/684/the-most-beautiful-picture-of-nature-wallpaper-preview.jpg",
+            "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg",
+            "https://m.media-amazon.com/images/I/81MClsmL6TL.jpg",
+            "https://getwallpapers.com/wallpaper/full/0/f/8/292170.jpg",
+            "https://cdn.wallpapersafari.com/59/3/xXbF2f.jpg"
+        ]
+
+        let container = document.querySelector(".image-div");
+        let nextBtn = document.querySelector("#next");
+        nextBtn.addEventListener("click", nextImg);
+        let prevBtn = document.querySelector("#previous");
+        prevBtn.addEventListener("click", prevImg);
+        let startStop = document.querySelector("#start");
+        startStop.addEventListener("click", startStopSlider);
+
+        let count = 0;
+        let slideShowID;
+
+
+
+        function showImage(index) {
+            container.innerHTML = ""
+            let img = document.createElement("img");
+            img.src = images[index];
+            container.append(img)
+        };
+
+        function nextImg() {
+            count++
+            if (count === images.length) {
+                count = 0;
+            }
+            showImage(count)
+        }
+        function prevImg() {
+            count--;
+            showImage(count)
+            
+            if (count < 0) {
+                count = images.length - 1
+            };
+        }
+        function startStopSlider() {
+            if (startStop.innerText === "START") {
+                slideShowID = setInterval(nextImg, 1000);
+
+                startStop.innerText = "STOP"
+                if (startStop.innerText === "STOP") {
+                    startStop.style.backgroundColor = "red"
+                } 
+            } else {
+                clearInterval(slideShowID);
+                startStop.innerText = "START"
+                 if (startStop.innerText === "START") {
+                    startStop.style.backgroundColor = "blue"
+
+                }
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
