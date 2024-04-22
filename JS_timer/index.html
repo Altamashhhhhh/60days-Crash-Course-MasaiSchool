@@ -79,9 +79,9 @@
                 startBtn.innerText = "START"
             } else {
 
-                const hour = Math.floor(totalSeconds / 3600);
-                const minute = Math.floor((totalSeconds % 3600) / 60);
-                const second = totalSeconds % 60;
+                let hour = Math.floor(totalSeconds / 3600);
+                let minute = Math.floor((totalSeconds % 3600) / 60);
+                let second = totalSeconds % 60;
 
                 document.querySelector("#hourShow").innerText = hour;
                 document.querySelector("#minuteShow").innerText = minute;
@@ -100,7 +100,7 @@
                 let secondInput = document.querySelector("#second").value;
                 totalSeconds = hourInput * 3600 + minuteInput * 60 + secondInput * 1;
 
-                interval = setInterval(timerFunction, 10);
+                interval = setInterval(timerFunction, 1000);
                 startBtn.innerText = "STOP"
             } else if (startBtn.innerText === "STOP") {
                 clearInterval(interval);
