@@ -1,0 +1,27 @@
+#container {
+
+    padding: 20px;
+    width: 95%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+#container div {
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+#buttons {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+button {
+    padding: 15px 25px;
+}
