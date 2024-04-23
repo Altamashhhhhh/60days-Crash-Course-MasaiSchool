@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Information</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        const school = {
+            name: "XYZ School",
+            establishYear: 1990,
+            departments: {
+                math: { teachers: 5, students: 150 },
+                science: { teachers: 4, students: 120 },
+                history: { teachers: 3, students: 100 },
+                english: { teachers: 4, students: 130 },
+            },
+            courses: ["math", "science", "history", "english"],
+            students: [
+                {
+                    name: "Alice",
+                    className: "Grade 5",
+                    scores: { math: 95, science: 88, history: 85, english: 92 },
+                },
+                {
+                    name: "Bob",
+                    className: "Grade 4",
+                    scores: { math: 80, science: 78, history: 92, english: 85 },
+                },
+                {
+                    name: "Charlie",
+                    className: "Grade 5",
+                    scores: { math: 88, science: 90, history: 78, english: 88 },
+                },
+                {
+                    name: "Diana",
+                    className: "Grade 4",
+                    scores: { math: 92, science: 85, history: 88, english: 90 },
+                },
+            ],
+        };
+
+
+
+        function countCalculation(obj){
+           let output = {
+            mathTeachersCount : obj.departments.math.teachers , 
+            historyTeachersCount : obj.departments.history.teachers ,
+            mathStudentsCount : obj.departments.math.students  , 
+            historyStudentsCount : obj.departments.history.students
+           }
+
+           return output
+
+        }
+        console.log(countCalculation(school))
+
+
+        //ABOVE CODE WAS FOR COUNTCALCULATION TO FIND THE NUMBER OF TEACHER FOR EACH SUBJECT 
+
+
+        
+        function findTopStudent(obj , sub){
+            let topper = {name : "Unknown" , scores : 0}
+           for(let i=0; i<obj.students.length ; i++){
+            let student = obj.students[i] ; 
+            if(student.scores[sub] > topper.scores){
+                topper.name = student.name ; 
+                topper.scores = student.scores[sub]
+            }
+           }
+           console.log("topStudent is : " + topper.name) ; 
+           console.log("topStudent Score is : " + topper.scores)
+
+        }
+        findTopStudent(school , "history")
+    </script>
+</body>
+
+</html>
