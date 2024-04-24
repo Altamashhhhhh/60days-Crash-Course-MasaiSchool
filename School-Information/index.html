@@ -48,38 +48,74 @@
 
 
 
-        function countCalculation(obj){
-           let output = {
-            mathTeachersCount : obj.departments.math.teachers , 
-            historyTeachersCount : obj.departments.history.teachers ,
-            mathStudentsCount : obj.departments.math.students  , 
-            historyStudentsCount : obj.departments.history.students
-           }
+        function countCalculation(obj) {
+            let { departments } = obj;
+            let { math, history } = departments;
+            let { teachers: mathTeachers, students: mathStudents } = math;
+            let { teachers: historyTeachers, students: historyStudents } = history;
 
-           return output
-
+            let output = {
+                mathTeachersCount: mathTeachers,
+                historyTeachersCount: historyTeachers,
+                mathStudentsCount: mathStudents,
+                historyStudentsCount: historyStudents,
+            };
+            return output;
         }
-        console.log(countCalculation(school))
+        console.log(countCalculation(school));
 
 
         //ABOVE CODE WAS FOR COUNTCALCULATION TO FIND THE NUMBER OF TEACHER FOR EACH SUBJECT 
 
 
-        
-        function findTopStudent(obj , sub){
-            let topper = {name : "Unknown" , scores : 0}
-           for(let i=0; i<obj.students.length ; i++){
-            let student = obj.students[i] ; 
-            if(student.scores[sub] > topper.scores){
-                topper.name = student.name ; 
-                topper.scores = student.scores[sub]
-            }
-           }
-           console.log("topStudent is : " + topper.name) ; 
-           console.log("topStudent Score is : " + topper.scores)
 
+        function findTopStudent(obj, sub) {
+            let topStudent = { name: "Unknown", className: "null", score: { math: 0, science: 0, history: 0, english: 0 } };
+            let { score } = topStudent;
+            let { students } = obj;
+            for (let i = 0; i < students.length; i++) {
+                let { name, className, scores } = students[i];
+                if (scores[sub] > topStudent.score[sub]) {
+                    topStudent.name = name;
+                    topStudent.className = className;
+                    topStudent.score = { ...scores };
+                }
+
+            }
+            return topStudent;
         }
-        findTopStudent(school , "history")
+        console.log(findTopStudent(school, "science"));
+
+
+
+        ///////////////BELOW CODE FOR ADDNEWDEPARTMENT FUNCTION
+
+        function addNewDept(object) {
+            let newDept = { ...object };
+            newDept.departments["art"] = { teachers: 2, students: 50 };
+            return newDept;
+        }
+
+        console.log(addNewDept(school));
+
+        ///////////////////BELOW CODE IS TO FIND THE DEPARTMENT WITH HIGHEST NUMBER OF STUDENTS
+
+
+        function highestStudentCountDepartment(obj) {
+            let highest = 0;
+            let dept = {};
+            let { departments } = obj;
+            for (let i in departments) {
+                if (departments[i].students > highest) {
+                    highest = departments[i].students;
+                    dept = i
+
+                }
+            }
+            return `Highest Count Dept is :  ${dept} with  ${highest} students`;
+        }
+
+        console.log(highestStudentCountDepartment(school));
     </script>
 </body>
 
