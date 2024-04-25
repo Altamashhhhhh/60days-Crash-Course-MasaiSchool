@@ -51,16 +51,16 @@
         function countCalculation(obj) {
             let { departments } = obj;
             let { math, history } = departments;
-            let { teachers: mathTeachers, students: mathStudents } = math;
-            let { teachers: historyTeachers, students: historyStudents } = history;
+            let { teachers: mathTeachersCount, students: mathStudentsCount } = math;
+            let { teachers: historyTeachersCount, students: historyStudentsCount } = history;
 
-            let output = {
-                mathTeachersCount: mathTeachers,
-                historyTeachersCount: historyTeachers,
-                mathStudentsCount: mathStudents,
-                historyStudentsCount: historyStudents,
-            };
-            return output;
+
+            return {
+                mathTeachersCount,
+                historyTeachersCount,
+                mathStudentsCount,
+                historyStudentsCount,
+            }
         }
         console.log(countCalculation(school));
 
@@ -69,20 +69,12 @@
 
 
 
-        function findTopStudent(obj, sub) {
-            let topStudent = { name: "Unknown", className: "null", score: { math: 0, science: 0, history: 0, english: 0 } };
-            let { score } = topStudent;
-            let { students } = obj;
-            for (let i = 0; i < students.length; i++) {
-                let { name, className, scores } = students[i];
-                if (scores[sub] > topStudent.score[sub]) {
-                    topStudent.name = name;
-                    topStudent.className = className;
-                    topStudent.score = { ...scores };
-                }
 
-            }
-            return topStudent;
+        function findTopStudent(obj, sub) {
+            let { students } = obj;
+            return students.reduce((prev, curr) => {
+                return curr.scores[sub] > prev.scores[sub] ? curr : prev;
+            });
         }
         console.log(findTopStudent(school, "science"));
 
