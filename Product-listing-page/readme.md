@@ -6,12 +6,6 @@ This project is a simple product listing page with convenient navigation and sor
 - **Category Selection**: Choose from various categories to view specific products.
 - **Search Bar**: Quickly search for products within the selected category.
 - **Sorting Options**: Sort products by price and name.
-- **Responsive Design**: Ensures optimal viewing experience on all devices.
-
-## Usage
-
-1. Clone this repository.
-2. Open `index.html` in your web browser.
 
 ## Technologies Used
 
@@ -19,10 +13,3 @@ This project is a simple product listing page with convenient navigation and sor
 - CSS
 - JavaScript
 
-## Contributing
-
-Contributions are welcome!
-
-## License
-
-This project is licensed under the MIT License.
