@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN IN PAGE</title>
+    <style>
+        #signinform {
+            border: 1px solid black;
+            width: 40%;
+            margin: 100px auto;
+            padding: 50px 40px;
+        }
+
+        #signinform input {
+            width: 90%;
+            padding: 5px 10px;
+        }
+
+        #signinform h1 {
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        #signinbtn {
+            display: block;
+            margin: 20px auto;
+            padding: 20px 30px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="signinform">
+        <h1>SIGN IN FORM</h1>
+        <input type="text" id="email" placeholder="Enter Email ID Here"> <br> <br>
+        <input type="password" id="password" placeholder="Enter Password Here"> <br> <br>
+        <button id="signinbtn">SIGN IN</button>
+    </form>
+
+    <script>
+        let signinform = document.querySelector("#signinform");
+        let signinBtn = document.querySelector("#signinbtn") 
+
+        signinBtn.addEventListener("click" , loginUser)
+
+        function loginUser(event){
+            event.preventDefault();
+            let email = document.querySelector("#email").value ; 
+            let password = document.querySelector("#password").value ; 
+            
+
+            fetch("http://localhost:3000/users")
+                .then((res) => res.json())
+                .then((data) => {
+                   
+
+                    data.forEach(element => {
+                        if(element.email === email && element.password === password){
+                            localStorage.setItem("loginUser", JSON.stringify(element.name));
+                            alert("Redirecting to Product Page");
+                            window.location.href = "product.html";
+                        }
+                    })
+                    
+                }).catch((err)=>{
+                        alert("Wrong Credentials : " + err)
+                    })
+        }
+    </script>
+</body>
+
+</html>

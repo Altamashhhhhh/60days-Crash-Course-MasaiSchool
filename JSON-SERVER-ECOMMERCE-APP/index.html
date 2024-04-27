@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP</title>
+    <style>
+        #signupform {
+            border: 1px solid black;
+            width: 40%;
+            margin: 100px auto;
+            padding: 50px 40px;
+        }
+
+        #signupform input {
+            width: 90%;
+            padding: 5px 10px;
+        }
+
+        #signupform h1 {
+            text-align: center;
+            margin: 50px auto;
+        }
+
+        #signupbtn,
+        #signinbutton {
+            display: block;
+            margin: 20px auto;
+            padding: 20px 30px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="#" id="signupform">
+        <h1>SIGN UP PAGE</h1>
+
+        <input type="text" placeholder="userName" id="username"> <br><br>
+        <input type="email" placeholder="userEmail" id="useremail"> <br> <br>
+        <input type="password" placeholder="userPassword" id="userpassword">
+        <button id="signupbtn">Sign Up</button>
+        <button id="signinbutton">Sign In</button>
+
+    </form>
+    <script>
+
+        let signupbtn = document.querySelector("#signupbtn");
+        let signinBtn = document.querySelector("#signinbutton");
+        
+
+        function handleSignup(event) {
+            event.preventDefault();
+
+            let name = document.querySelector("#username").value;
+            let email = document.querySelector("#useremail").value;
+            let password = document.querySelector("#userpassword").value;
+
+            let userData = {
+                id: Math.random().toString(),
+                name,
+                email,
+                password
+            }
+            fetch("http://localhost:3000/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            }).then(() => {
+               
+               window.location.href = "signin.html"
+            }).catch(()=>{
+                alert("Error While Registration")
+            })
+        }
+
+        function loginHandle(eve) {
+            eve.preventDefault();
+            window.location.href = "signin.html"
+        }
+
+        signupbtn.addEventListener("click", handleSignup);
+        signinBtn.addEventListener("click", loginHandle);
+    </script>
+</body>
+
+</html>

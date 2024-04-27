@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODUCT PAGE</title>
+    <style>
+        /* *{
+            border: 1px solid red;
+        } */
+        #main {
+            width: 96%;
+            margin: auto;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px 30px;
+            padding: 10px 20px;
+
+        }
+
+        .container {
+            margin: 50px auto;
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+        .container img {
+            width: 80%;
+            height: 250px;
+            display: block;
+            margin: auto;
+
+
+
+        }
+
+        .buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="username"></p>
+    <button id="logout">LOGOUT</button>
+    <div id="main">
+
+    </div>
+
+
+    <script>
+        let main = document.querySelector("#main");
+        let loggedinUser = JSON.parse(localStorage.getItem("loginUser"));
+
+        let userName = document.querySelector("#username");
+        let logoutBtn = document.querySelector("#logout");
+
+        logoutBtn.addEventListener("click", logoutUser);
+        
+        function logoutUser() {
+            localStorage.removeItem("loginUser");
+            alert("redirecting to home page");
+            window.location.href = "index.html"
+        }
+        userName.innerHTML = "<strong>USER NAME : </strong>" + loggedinUser
+
+        fetch("http://localhost:3000/products").then((res) => res.json()).then((data) => {
+            data.forEach(element => {
+                let container = document.createElement("div")
+                container.className = "container";
+
+                let title = document.createElement("p");
+                title.innerHTML = "<strong>PRODUCT : </strong>" + " " + element.title;
+
+                let image = document.createElement("img");
+                image.src = element.src;
+
+                let price = document.createElement("p");
+                price.innerHTML = "<strong>PRICE : </strong>" + " " + element.price
+
+                let ratings = document.createElement("span");
+                ratings.innerHTML = "<strong>RATINGS : </strong>" + " " + element.ratings;
+
+                let buttons = document.createElement("div");
+                buttons.className = "buttons";
+
+                let addItem = document.createElement("button");
+                addItem.innerHTML = "add to cart";
+
+                let deleteItem = document.createElement("button");
+                deleteItem.innerHTML = "delete from cart"
+
+
+                addItem.addEventListener("click" , ()=>{
+                    addtoCart(element);
+                })
+
+                function addtoCart(item){
+                    fetch("http://localhost:3000/allUsersCart").then((res)=>res.json()).then((data)=>{
+                        if(data[loggedinUser]===undefined){
+                            data[loggedinUser] = [] ; 
+                            data[loggedinUser].push(item)
+                        }else{
+                            data[loggedinUser].push(item)
+                        }
+                    }) ;
+                    fetch("http://localhost:3000/allUsersCart", {
+                            method: "POST", // or "POST" if it's a new resource
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
+                        })
+                }
+
+                main.append(container);
+                container.append(image, title, price, ratings, buttons)
+                buttons.append(addItem, deleteItem)
+            });
+        });
+
+    </script>
+</body>
+
+</html>

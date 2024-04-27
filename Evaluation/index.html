@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FakeStore Product Listing Webpage</title>
+    <style>
+        .nav {
+            width: 100%;
+            height: 100px;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgb(22, 22, 22);
+            color: white;
+
+        }
+
+        select,
+        input {
+            height: 40%;
+            padding: 10px 30px;
+        }
+
+        #show {
+            width: 96%;
+            margin: auto;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        #show img {
+            width: 80%;
+            height: 50%;
+            object-fit: contain;
+        }
+
+        #show div {
+            padding: 20px;
+            border: 1px solid blue;
+        }
+
+        .description {
+            max-height: 20%;
+            overflow: hidden;
+            ;
+            -webkit-line-clamp: 2;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <h1>Product Listing Page</h1>
+
+        <select name="category" id="category-select">
+            <option value="allcategory">All Category</option>
+            <option value="electronics">electronics</option>
+            <option value="jewelery">jewelery</option>
+            <option value="men's clothing">men's clothing</option>
+            <option value="women's clothing">women's clothing</option>
+        </select>
+
+        <input type="search" name="product-search" id="search" placeholder="Search Products">
+
+        <select name="sort" id="sort">
+            <option value="priceltoh">Price : Low - High</option>
+            <option value="pricehtol">Price : High - Low</option>
+            <option value="atoz">Name : A - Z</option>
+            <option value="ztoa">Name : Z - A</option>
+        </select>
+    </div>
+
+    <div id="show">
+
+    </div>
+
+
+
+
+    <script>
+        let display = document.querySelector("#show")
+        let categorySelect = document.querySelector("#category-select");
+        let search = document.querySelector("#search");
+        let sorting = document.querySelector("#sort");
+
+
+
+        function getData(url) {
+            fetch(url).then((res) => res.json()).then((data) => {
+                showData(data)
+                console.log(data)
+            })
+        }
+
+
+        function categoryFunction(category) {
+
+
+            let selected = categorySelect.value;
+            if (selected === "allcategory") {
+
+                getData(`https://fakestoreapi.com/products`)
+            } else {
+                getData(`https://fakestoreapi.com/products/category/${category}`)
+            }
+
+        }
+
+
+
+
+        function searchFunction(value) {
+
+            getData(`https://fakestoreapi.com/products/category/${value}`)
+
+        }
+
+        function sortByPrice(value) {
+
+            let selected = categorySelect.value ; 
+            let link ; 
+            if(selected === "allcategory"){
+                link =  "https://fakestoreapi.com/products";
+            }else{
+                link =   `https://fakestoreapi.com/products/category/${selected}`
+            }
+            
+            fetch(link)
+                .then((res) => res.json())
+                .then((data) => {
+                    if (value === "priceltoh") {
+                        data.sort((a, b) => a.price - b.price);
+                    } else if (value === "pricehtol") {
+                        data.sort((a, b) => b.price - a.price);
+                    } else if (value == "atoz") {
+                        data.sort((a, b) => {
+                            return a.title.localeCompare(b.title)
+                        })
+                    } else if (value == "ztoa") {
+                        data.sort((a, b) => {
+                            return b.title.localeCompare(a.title)
+                        })
+                    }
+                    showData(data);
+                });
+
+        }
+
+        sorting.addEventListener("change", function () {
+            sortByPrice(sorting.value)
+        });
+
+        search.addEventListener("input", function () {
+            searchFunction(search.value)
+        })
+        categorySelect.addEventListener("change", function () {
+            categoryFunction(categorySelect.value)
+        })
+
+        getData("https://fakestoreapi.com/products")
+
+        function showData(data) {
+
+            display.innerHTML = ""
+            data.forEach(element => {
+                let container = document.createElement("div");
+
+                let img = document.createElement("img");
+                img.src = element.image;
+
+                let title = document.createElement("p");
+                title.innerText = element.title;
+
+                let price = document.createElement("p");
+                price.innerHTML = "<strong>Price : </strong>" + "$" + element.price;
+
+                let ratings = document.createElement("p");
+                ratings.innerHTML = "<strong>Ratings : </strong>" + element.rating.rate + " : " + element.rating.count;
+
+                let desc = document.createElement("p");
+                desc.innerHTML = "<strong>Description : </strong>" + element.description;
+                desc.className = "description";
+
+
+                container.append(img, title, price, ratings, desc)
+                display.append(container)
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
