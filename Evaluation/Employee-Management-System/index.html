@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMPLOYEE MANAGEMENT SYSTEM</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #filter {
+            width: 80%;
+            margin: 50px auto 20px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        select {
+            padding: 10px 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 50px auto;
+
+
+        }
+
+        table thead th,
+        td {
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        tr {
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>EMPLOYEE MANAGEMENT SYSTEM</h1>
+
+    <div id="filter">
+        <span>Filter By Department :
+            <select name="department" id="department">
+                <option value="alldepartment">Select Department</option>
+                <option value="hr">HR</option>
+                <option value="finance">Finance</option>
+                <option value="marketing">Marketing</option>
+                <option value="engineering">Engineering</option>
+                <option value="operations">Operations</option>
+            </select>
+        </span>
+
+        <span>Filter By Gender :
+            <select name="gender" id="gender">
+                <option value="allgender">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </span>
+
+        <span>Filter By Salary :
+            <select name="salary" id="salary">
+                <option value="lowtohigh">Low to High</option>
+                <option value="hightolow">High to Low</option>
+            </select>
+        </span>
+    </div>
+
+    <table>
+        <thead>
+            <tr style="background-color: lightgrey;">
+                <th>S No.</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+
+
+    <script>
+        let tbody = document.querySelector("tbody");
+        let department = document.querySelector("#department");
+        let gender = document.querySelector("#gender");
+        let salary = document.querySelector("#salary");
+
+
+        fetch("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees").then((res) => res.json()).then((data) => {
+            let empData = data.data;
+            showData(empData);
+        })
+
+
+
+
+        function showData(value) {
+            value.forEach((element, i) => {
+                let row = document.createElement("tr");
+                let serial = document.createElement("td");
+                serial.innerHTML = element.id;
+
+                let name = document.createElement("td");
+                name.innerText = element.name;
+
+                let gender = document.createElement("td");
+                gender.innerText = element.gender;
+
+                let department = document.createElement("td");
+                department.innerText = element.department;
+
+                let salary = document.createElement("td");
+                salary.innerText = element.salary;
+
+                row.append(serial, name, gender, department, salary)
+                tbody.append(row)
+            });
+        }
+
+
+
+        function sortSalary() {
+            fetch("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees").then((res) => res.json()).then((data) => {
+                
+                let salaryValue = salary.value;
+                
+                data.data.sort((a,b)=>{
+                    return a.salary - b.salary
+                })
+                showData(data)
+            })
+           
+           
+        }
+        salary.addEventListener("change", sortSalary)
+    </script>
+</body>
+
+</html>
