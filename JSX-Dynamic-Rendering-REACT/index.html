@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX and Babel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      // Your JSX code here
+
+      let root = ReactDOM.createRoot(document.querySelector("#root")) ; 
+
+      let Text = <p>Seize the day</p>
+      let textD =  "Seize the day Dynamiclly "
+      let para = React.createElement("p" , null , textD ) // creating p element with no class and assigging textD content to it
+      let value = false  ;  //Setting value to false for conditional operator
+      let condition = (
+        <>
+        {value ? Text : para}
+        </>
+      )
+
+      root.render(condition)
+       
+    </script>
+  </body>
+</html>
