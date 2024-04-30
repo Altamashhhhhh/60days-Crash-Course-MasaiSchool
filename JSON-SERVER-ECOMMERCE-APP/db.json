@@ -94,6 +94,85 @@
         "price": 23000,
         "ratings": 3.8
       }
+    ],
+    "shaikhaltamash": [
+      {
+        "id": 2,
+        "title": "TV",
+        "src": "https://5.imimg.com/data5/SELLER/Default/2023/4/299765792/GM/GW/BT/6158633/50-inch-smart-android-led-tv-500x500.jpg",
+        "price": 25000,
+        "ratings": 4
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 2,
+        "title": "TV",
+        "src": "https://5.imimg.com/data5/SELLER/Default/2023/4/299765792/GM/GW/BT/6158633/50-inch-smart-android-led-tv-500x500.jpg",
+        "price": 25000,
+        "ratings": 4
+      },
+      {
+        "id": 2,
+        "title": "TV",
+        "src": "https://5.imimg.com/data5/SELLER/Default/2023/4/299765792/GM/GW/BT/6158633/50-inch-smart-android-led-tv-500x500.jpg",
+        "price": 25000,
+        "ratings": 4
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 2,
+        "title": "TV",
+        "src": "https://5.imimg.com/data5/SELLER/Default/2023/4/299765792/GM/GW/BT/6158633/50-inch-smart-android-led-tv-500x500.jpg",
+        "price": 25000,
+        "ratings": 4
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      },
+      {
+        "id": 1,
+        "title": "SmartPhone",
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkz2kjdQjM6DX7mLSYMtBrQMF_wRCFb-3cxwI5rPg1A&s",
+        "price": 15000,
+        "ratings": 5
+      }
     ]
   }
 }

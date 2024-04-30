@@ -61,7 +61,7 @@
         let logoutBtn = document.querySelector("#logout");
 
         logoutBtn.addEventListener("click", logoutUser);
-        
+
         function logoutUser() {
             localStorage.removeItem("loginUser");
             alert("redirecting to home page");
@@ -95,27 +95,46 @@
                 let deleteItem = document.createElement("button");
                 deleteItem.innerHTML = "delete from cart"
 
+                
 
-                addItem.addEventListener("click" , ()=>{
+
+                async function deleteCart(value) {
+
+                    let res = await fetch(`http://localhost:3000/allUsersCart`) ; 
+                    let data = await res.json() ; 
+
+                    console.log(data[loggedinUser].id)
+                }
+
+
+                deleteItem.addEventListener("click", () => {
+                    deleteCart(element.id)
+                })
+                addItem.addEventListener("click", (event) => {
+                    event.preventDefault();
                     addtoCart(element);
                 })
 
-                function addtoCart(item){
-                    fetch("http://localhost:3000/allUsersCart").then((res)=>res.json()).then((data)=>{
-                        if(data[loggedinUser]===undefined){
-                            data[loggedinUser] = [] ; 
-                            data[loggedinUser].push(item)
-                        }else{
-                            data[loggedinUser].push(item)
-                        }
-                    }) ;
-                    fetch("http://localhost:3000/allUsersCart", {
-                            method: "POST", // or "POST" if it's a new resource
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify(data),
-                        })
+
+
+                async function addtoCart(item) {
+                    let res = await fetch("http://localhost:3000/allUsersCart")
+                    let data = await res.json();
+
+                    if (data[loggedinUser] === undefined) {
+                        data[loggedinUser] = [];
+
+                    }
+                    data[loggedinUser].push(element);
+
+                    await fetch("http://localhost:3000/allUsersCart", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    console.log(loggedinUser, data[loggedinUser])
                 }
 
                 main.append(container);
