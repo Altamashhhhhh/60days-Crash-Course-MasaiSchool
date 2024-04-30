@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your task starts here
+
+    let text = React.createElement("p", "para", "Seize the day ");
+    let root = ReactDOM.createRoot(document.querySelector("#root"));
+    root.render(text)
+    //react reduce the lines of code we used to write in js where we have to tell everything line by line what to do but in react it reduce the work and saves a alot of time
+
+</script>
+
+</html>
