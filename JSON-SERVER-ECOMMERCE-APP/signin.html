@@ -5,20 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGN IN PAGE</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        #signinform {
-            border: 1px solid black;
-            width: 40%;
-            margin: 100px auto;
-            padding: 50px 40px;
+        body {
+            background-color: rgb(157, 130, 238);
+            box-sizing: border-box;
         }
 
-        #signinform input {
-            width: 90%;
-            padding: 5px 10px;
+        #signinform {
+            box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;
+            width: 40%;
+            margin: 100px auto;
+            padding: 70px 50px;
+        }
+
+        #signinform input::placeholder {
+            color: darkgrey;
+            margin-left: 50px;
+            padding-left: 30px;
         }
 
         #signinform h1 {
+            color: white;
             text-align: center;
             margin: 50px auto;
         }
@@ -26,8 +34,29 @@
         #signinbtn {
             display: block;
             margin: 20px auto;
-            padding: 20px 30px;
+            padding: 15px;
             font-weight: 700;
+            margin: auto;
+            background-color: black;
+            border-radius: 50px;
+            width: 50%;
+            color: white;
+        }
+
+        #signinbtn:active {
+            background-color: rgb(21, 21, 21);
+            color: white;
+        }
+
+        #signinform input {
+            background-color: white;
+            display: block;
+            border: none;
+            height: 40px;
+            width: 80%;
+            margin: auto;
+            border-radius: 50px;
+            padding: 5px 40px;
         }
     </style>
 </head>
@@ -42,33 +71,36 @@
 
     <script>
         let signinform = document.querySelector("#signinform");
-        let signinBtn = document.querySelector("#signinbtn") 
+        let signinBtn = document.querySelector("#signinbtn")
 
-        signinBtn.addEventListener("click" , loginUser)
+        signinBtn.addEventListener("click", loginUser)
 
-        function loginUser(event){
+        function loginUser(event) {
             event.preventDefault();
-            let email = document.querySelector("#email").value ; 
-            let password = document.querySelector("#password").value ; 
-            
+            let email = document.querySelector("#email").value;
+            let password = document.querySelector("#password").value;
+
 
             fetch("http://localhost:3000/users")
                 .then((res) => res.json())
                 .then((data) => {
-                   
-
                     data.forEach(element => {
-                        if(element.email === email && element.password === password){
+                        if (element.email === email && element.password === password) {
                             localStorage.setItem("loginUser", JSON.stringify(element.name));
                             alert("Redirecting to Product Page");
                             window.location.href = "product.html";
                         }
+                    }).then((res) => {
+                        if (!res.ok) { window.location.href = "signin.html" } {
+                            alert("details doesnt match")
+                        }
+
+                    }).catch((err) => {
+                        alert("Wrong details entered" + err)
                     })
-                    
-                }).catch((err)=>{
-                        alert("Wrong Credentials : " + err)
-                    })
-        }
+                })}
+
+
     </script>
 </body>
 

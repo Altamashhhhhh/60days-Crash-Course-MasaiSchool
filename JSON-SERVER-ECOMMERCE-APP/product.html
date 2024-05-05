@@ -5,49 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRODUCT PAGE</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        /* *{
-            border: 1px solid red;
-        } */
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        
+        }
+
         #main {
             width: 96%;
             margin: auto;
             height: auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px 30px;
+            justify-content: space-around;
+            gap: 10px;
             padding: 10px 20px;
-
+        
         }
 
-        .container {
+        #main .container {
             margin: 50px auto;
-            border: 1px solid black;
+            border: 3px solid rgb(157, 130, 238) ;
             padding: 20px;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: rgba(157, 130, 238, 0.35) 0px 5px 15px;
+
+            
         }
 
-        .container img {
+        #main .container img {
             width: 80%;
-            height: 250px;
+            height: 200px;
             display: block;
             margin: auto;
-
-
-
+            /* border: 2px solid red; */
+            object-fit: contain;
         }
 
-        .buttons {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
+        button {
+            padding: 12px 10px;
+        }
+
+        .button {
             margin: 10px auto;
+            display: block;
+            border: 3px solid rgb(157, 130, 238)  ; 
+            background-color: transparent;
+        }
+
+        #buttons {
+            display: flex;
+            padding: 10px 50px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(157, 130, 238);
+            color: white;
+            border-bottom: 2px solid white;
+        }
+
+        #buttons button {
+            margin: 10px 50px;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            font-weight: 900;
+            padding: 15px 20px;
+            /* background-color: white; */
         }
     </style>
 </head>
 
 <body>
-    <p id="username"></p>
-    <button id="logout">LOGOUT</button>
+
+    <div id="buttons">
+        <p id="username" style="color: black;"></p>
+        <button id="logout">LOGOUT</button>
+        <button id="cart">CART</button>
+    </div>
     <div id="main">
 
     </div>
@@ -59,6 +97,11 @@
 
         let userName = document.querySelector("#username");
         let logoutBtn = document.querySelector("#logout");
+        let cartBtn = document.querySelector("#cart");
+
+        cartBtn.addEventListener("click", () => {
+            window.location.href = "cart.html";
+        })
 
         logoutBtn.addEventListener("click", logoutUser);
 
@@ -67,7 +110,8 @@
             alert("redirecting to home page");
             window.location.href = "index.html"
         }
-        userName.innerHTML = "<strong>USER NAME : </strong>" + loggedinUser
+
+        userName.innerHTML = `WELCOME : <strong>  ${loggedinUser} </strong>`
 
         fetch("http://localhost:3000/products").then((res) => res.json()).then((data) => {
             data.forEach(element => {
@@ -86,60 +130,56 @@
                 let ratings = document.createElement("span");
                 ratings.innerHTML = "<strong>RATINGS : </strong>" + " " + element.ratings;
 
-                let buttons = document.createElement("div");
-                buttons.className = "buttons";
+
 
                 let addItem = document.createElement("button");
-                addItem.innerHTML = "add to cart";
-
-                let deleteItem = document.createElement("button");
-                deleteItem.innerHTML = "delete from cart"
-
-                
+                addItem.innerHTML = "Add to Cart";
+                addItem.className = "button"
 
 
-                async function deleteCart(value) {
-
-                    let res = await fetch(`http://localhost:3000/allUsersCart`) ; 
-                    let data = await res.json() ; 
-
-                    console.log(data[loggedinUser].id)
-                }
 
 
-                deleteItem.addEventListener("click", () => {
-                    deleteCart(element.id)
-                })
-                addItem.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    addtoCart(element);
-                })
 
 
+
+                addItem.addEventListener("click", async (event) => {
+                    event.preventDefault(); // Prevent default form submission or link behavior
+                    await addtoCart(element);
+                });
 
                 async function addtoCart(item) {
-                    let res = await fetch("http://localhost:3000/allUsersCart")
-                    let data = await res.json();
+                    event.preventDefault(); // Prevent default form submission or link behavior
 
-                    if (data[loggedinUser] === undefined) {
-                        data[loggedinUser] = [];
+                    try {
+                        let res = await fetch("http://localhost:3000/allUsersCart");
+                        let data = await res.json();
 
+                        if (data[loggedinUser] === undefined) {
+                            data[loggedinUser] = [];
+                        }
+                        data[loggedinUser].push(element);
+
+                        await fetch("http://localhost:3000/allUsersCart", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        alert(`${item.title} :  Item is Added to the Cart`)
+
+                    } catch (error) {
+                        console.error("Error adding item to cart:", error);
                     }
-                    data[loggedinUser].push(element);
 
-                    await fetch("http://localhost:3000/allUsersCart", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(data)
-                    })
-                    console.log(loggedinUser, data[loggedinUser])
                 }
 
+
+
                 main.append(container);
-                container.append(image, title, price, ratings, buttons)
-                buttons.append(addItem, deleteItem)
+                container.append(image, title, price, ratings, addItem)
+
             });
         });
 

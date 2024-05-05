@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #cartdiv {
+            width: 96%;
+            margin: auto;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px 30px;
+            padding: 10px 20px;
+        }
+
+        #cartdiv {
+            width: 96%;
+            margin: auto;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-content: space-around;
+            gap: 10px;
+            padding: 10px 20px;
+
+
+        }
+
+        #cartdiv .container {
+            margin: 50px auto;
+            border: 3px solid rgb(157, 130, 238);
+            padding: 20px;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: rgba(157, 130, 238, 0.35) 0px 5px 15px;
+
+
+
+
+        }
+
+        #cartdiv .container img {
+            width: 80%;
+            height: 200px;
+            display: block;
+            margin: auto;
+
+            object-fit: contain;
+
+        }
+
+
+
+
+
+        #buttons {
+            padding: 10px 50px;
+            background-color: rgb(157, 130, 238);
+            color: white;
+
+        }
+
+        #buttons button,
+        .container button {
+            margin: 10px 50px;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            font-weight: 900;
+            padding: 15px 20px;
+            
+
+        }
+
+        button {
+            display: block;
+            margin: auto;
+        }
+
+        .container button {
+            background-color: rgb(83, 61, 151); 
+            color: white;
+            border-radius: 20px;
+         }
+    </style>
+</head>
+
+<body>
+    <div id="buttons">
+        <button id="productpage">Product Page</button>
+    </div>
+    <div id="cartdiv"></div>
+
+    <script>
+        // Function to fetch and display cart items
+        function displayCart() {
+            let cartDiv = document.querySelector("#cartdiv");
+            cartDiv.innerHTML = ""; // Remove existing cart Data
+
+            fetch("http://localhost:3000/allUsersCart")
+                .then(res => res.json())
+                .then(data => {
+                    let loggedinUser = JSON.parse(localStorage.getItem("loginUser"));
+                    let loggedinUserCart = data[loggedinUser];
+
+                    loggedinUserCart.forEach(item => {
+                        let container = document.createElement("div");
+                        container.className = "container";
+
+                        let title = document.createElement("p");
+                        title.innerHTML = "<strong>PRODUCT : </strong>" + " " + item.title;
+
+                        let image = document.createElement("img");
+                        image.src = item.src;
+
+                        let price = document.createElement("p");
+                        price.innerHTML = "<strong>PRICE : </strong>" + " " + item.price;
+
+                        let ratings = document.createElement("span");
+                        ratings.innerHTML = "<strong>RATINGS : </strong>" + " " + item.ratings;
+
+                        let deleteItem = document.createElement("button");
+                        deleteItem.innerHTML = "delete from cart";
+                        deleteItem.addEventListener("click", () => deleteFromCart(item.id));
+
+                        container.append(image, title, price, ratings, deleteItem);
+                        cartDiv.appendChild(container);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching cart data:", error);
+                });
+        }
+
+
+        function deleteFromCart(itemId) {
+            let loggedinUser = JSON.parse(localStorage.getItem("loginUser"));
+
+            fetch("http://localhost:3000/allUsersCart")
+                .then(res => res.json())
+                .then(data => {
+
+                    let lastIndex = data[loggedinUser].findIndex(item => item.id === itemId);
+
+
+
+                    data[loggedinUser].splice(lastIndex, 1);
+
+
+                    fetch("http://localhost:3000/allUsersCart", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(() => {
+
+                            displayCart();
+                        })
+
+                })
+        }
+
+
+        let productPage = document.querySelector("#productpage");
+        productPage.addEventListener("click", () => {
+            window.location.href = "product.html";
+        });
+
+
+        displayCart();
+    </script>
+</body>
+
+</html>

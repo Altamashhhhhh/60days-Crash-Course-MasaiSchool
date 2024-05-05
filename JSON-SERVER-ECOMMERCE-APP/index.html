@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGN UP</title>
+    <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            background-color: rgb(157, 130, 238);
+            box-sizing: border-box;
+        }
+
         #signupform {
-            border: 1px solid black;
+            box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px, rgba(255, 255, 255, 0.12) 0px -12px 30px, rgba(255, 255, 255, 0.12) 0px 4px 6px, rgba(255, 255, 255, 0.17) 0px 12px 13px, rgba(255, 255, 255, 0.09) 0px -3px 5px;          
             width: 40%;
             margin: 100px auto;
             padding: 50px 40px;
@@ -15,7 +21,7 @@
 
         #signupform input {
             width: 90%;
-            padding: 5px 10px;
+            padding: 5px 40px;
         }
 
         #signupform h1 {
@@ -27,8 +33,33 @@
         #signinbutton {
             display: block;
             margin: 20px auto;
-            padding: 20px 30px;
+            padding: 15px;
             font-weight: 700;
+        }
+
+       #signupform button {
+
+            color: white;
+            width: 50%;
+            margin: 20px  auto;
+            background-color: black;
+            border-radius: 50px;
+        }
+
+        #signupform input {
+            background-color: white;
+            border: none;
+            height: 30px;
+            border-radius: 50px;
+
+
+        }
+
+        #signupform input::placeholder {
+            color: darkgrey;
+            margin-left: 50px;
+            padding-left: 30px;
+
         }
     </style>
 </head>
@@ -36,11 +67,11 @@
 <body>
 
     <form action="#" id="signupform">
-        <h1>SIGN UP PAGE</h1>
+        <h1 style="color: white;">SIGN UP PAGE</h1>
 
-        <input type="text" placeholder="userName" id="username"> <br><br>
-        <input type="email" placeholder="userEmail" id="useremail"> <br> <br>
-        <input type="password" placeholder="userPassword" id="userpassword">
+        <input type="text" placeholder="Full Name" id="username"> <br><br>
+        <input type="email" placeholder="Email Address" id="useremail"> <br> <br>
+        <input type="password" placeholder="Password" id="userpassword">
         <button id="signupbtn">Sign Up</button>
         <button id="signinbutton">Sign In</button>
 
@@ -49,10 +80,10 @@
 
         let signupbtn = document.querySelector("#signupbtn");
         let signinBtn = document.querySelector("#signinbutton");
-        
 
-        function handleSignup(event) {
-            event.preventDefault();
+
+        function handleSignup(e) {
+            e.preventDefault();
 
             let name = document.querySelector("#username").value;
             let email = document.querySelector("#useremail").value;
@@ -70,10 +101,11 @@
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(userData)
-            }).then(() => {
+            }).then(()=>{
+                window.location.href = "signin.html"
                
-               window.location.href = "signin.html"
-            }).catch(()=>{
+            })
+            .catch(() => {
                 alert("Error While Registration")
             })
         }
