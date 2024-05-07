@@ -1,0 +1,14 @@
+{
+    "record":[
+        {
+            "name" : "Altamash"  , 
+            "empid" : "60506050" , 
+            "dept" : "Operation" , 
+            "exp" :  2 , 
+            "email" : "Altamash@masaischool.com" , 
+            "num" : "789654123"
+
+        }
+    ] 
+    
+}

@@ -47,6 +47,24 @@
       "name": "elon",
       "email": "elon",
       "password": "elon"
+    },
+    {
+      "id": "0.32247933977862386",
+      "name": "sampledev",
+      "email": "devsample@gmail.com",
+      "password": "devsample"
+    },
+    {
+      "id": "0.35100134390492443",
+      "name": "sampledev",
+      "email": "devsample@gmail.com",
+      "password": "devsample"
+    },
+    {
+      "id": "0.036540270811268316",
+      "name": "sampledev",
+      "email": "devsample@gmail.com",
+      "password": "devsample"
     }
   ],
   "products": [
@@ -140,6 +158,15 @@
         "src": "https://images-cdn.ubuy.co.in/633b75b241637808af7d4688-asus-laptop-l510-ultra-thin-laptop.jpg",
         "price": 35000,
         "ratings": 4.5
+      }
+    ],
+    "sampledev": [
+      {
+        "id": 2,
+        "title": "TV",
+        "src": "https://5.imimg.com/data5/SELLER/Default/2023/4/299765792/GM/GW/BT/6158633/50-inch-smart-android-led-tv-500x500.jpg",
+        "price": 25000,
+        "ratings": 4
       }
     ]
   }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta color="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    // Your  code will go here
+
+
+    let root = ReactDOM.createRoot(document.querySelector("#root"));
+
+
+
+
+
+    function App() {
+        let [color, setcolor] = React.useState("");
+        let [isValid, setValid] = React.useState(true)
+
+        function changeColor(event) {
+            let newcolor = event.target.value;
+            setcolor(newcolor)
+            setValid(/^#[0-9A-F]{6}$/i.test(newcolor));
+
+        }
+
+        return (
+            <>
+                <input
+                    type="text"
+                    placeholder="Enter Heroes"
+                    value={color}
+                    onChange={changeColor}
+                    style={{ display: "block", padding: "20px 50px", height: "500px", height: "50px", border: "3px solid black" }} />
+                {!isValid && <p style={{ color: 'red', margin: '5px 0' }}>Please enter a valid hex color code (e.g., #RRGGBB)</p>}
+                <div style={{ backgroundColor: color, width: "550px", height: "550px", margin: "30px auto", }}></div>
+
+
+            </>
+        )
+
+    }
+
+
+    root.render(<App />)
+</script>
+
+</html>

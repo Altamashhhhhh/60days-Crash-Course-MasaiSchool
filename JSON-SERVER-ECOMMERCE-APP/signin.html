@@ -87,18 +87,18 @@
                     data.forEach(element => {
                         if (element.email === email && element.password === password) {
                             localStorage.setItem("loginUser", JSON.stringify(element.name));
-                            alert("Redirecting to Product Page");
+                           
                             window.location.href = "product.html";
                         }
-                    }).then((res) => {
-                        if (!res.ok) { window.location.href = "signin.html" } {
-                            alert("details doesnt match")
-                        }
+                    }).catch((res) => {
+                         alert("details doesnt match")
+
 
                     }).catch((err) => {
                         alert("Wrong details entered" + err)
                     })
-                })}
+                })
+        }
 
 
     </script>
