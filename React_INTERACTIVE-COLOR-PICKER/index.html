@@ -41,9 +41,9 @@
                     placeholder="Enter Heroes"
                     value={color}
                     onChange={changeColor}
-                    style={{ display: "block", padding: "20px 50px", height: "500px", height: "50px", border: "3px solid black" }} />
+                    style={{   display: "block", padding: "20px 50px", height: "500px", height: "50px", border: "3px solid black" , fontSize:"1.5em" }} />
                 {!isValid && <p style={{ color: 'red', margin: '5px 0' }}>Please enter a valid hex color code (e.g., #RRGGBB)</p>}
-                <div style={{ backgroundColor: color, width: "550px", height: "550px", margin: "30px auto", }}></div>
+                <div style={{ backgroundColor: color, width: "550px", height: "550px", margin: "30px auto", border:"1px solid black " }}></div>
 
 
             </>
