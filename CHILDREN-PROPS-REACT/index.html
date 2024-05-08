@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic List Rendering</title>
+    <style>
+       .gallery{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4 , 1fr );
+        gap: 20px 30px;
+       }
+       img{
+        width: 100%;
+
+       }
+    </style>
+    
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Your ItemList component code will go here
+        let root = ReactDOM.createRoot(document.querySelector("#root"));
+
+        function Gallery({ children }) {
+            return (
+                <div className="gallery">
+                    {children}
+                </div>
+            )
+        }
+
+        function Image({ src }) {
+            return (
+                <>
+                    <img src={src} />
+                </>
+            )
+        }
+
+
+        function App() {
+            return (
+                <div >
+                    <Gallery >
+                        <Image src={"https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg"} />
+                        <Image src={"https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg"} />
+                        <Image src={"https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg"} />
+                        <Image src={"https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg"} />
+                       
+                        
+                    </Gallery>
+                </div>
+            )
+
+        }
+
+        root.render(<App />)
+
+
+    </script>
+</body>
+
+</html>
