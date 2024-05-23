@@ -8,7 +8,10 @@ function App() {
   return (
     <>
       {/* <FocusInput1 /> */}
-      {/* <FocusInput2 /> */}
+      <FocusInput2 /> 
+      <br /> 
+      <br /> 
+      <br /> 
       {/* <ChangeColor1 /> */}
       <ChangeColor2 />
     </>

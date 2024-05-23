@@ -16,7 +16,7 @@ function ChangeColor2() {
         style={{ width: "100px", height: "100px", backgroundColor: "red" }}
       >
         Color Box
-      </div>
+      </div> <br />
       <button onClick={handleChangeColor}>Change Color</button>
     </div>
   );
