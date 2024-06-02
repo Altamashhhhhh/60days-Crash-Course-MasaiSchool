@@ -1,0 +1,44 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+nav{
+  
+    width: 100%;
+    padding: 1px ;
+    background-color: white;
+  
+}
+ul{
+    display: flex;
+    justify-content: space-around;
+}
+
+ul li{
+    list-style-type: none;
+}
+ul li a{
+    color: black;
+    text-decoration: none;
+}
+ul li a:hover{
+    text-decoration: underline;
+}
+ul li a:active{
+    color: red;
+}
+
+/* styles.css */
+.nav-link {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.active {
+    background-color: black;
+    color: white;
+}
+
+

@@ -1,0 +1,53 @@
+.main {
+  width: 70%;
+  margin: auto;
+}
+.header {
+  background-image: url("https://wallpapers.com/images/hd/wheat-harvest-1800-x-1125-wallpaper-3tc9nc7h2nfdweqc.jpg");
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+  color: white;
+  font-weight: 900;
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+.header h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.product {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
+}
+.product img {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+
+form{
+    width: 50%;
+   
+}
+form input , textarea{
+    background-color: rgb(237, 252, 213);
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px ;
+}

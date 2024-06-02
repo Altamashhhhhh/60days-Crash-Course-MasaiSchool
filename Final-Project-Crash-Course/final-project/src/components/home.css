@@ -1,0 +1,98 @@
+.main{
+    width: 70%;
+    margin: auto;
+}
+img{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.home-header {
+    width: 100%;
+    padding: 10px 20px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 500px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.3em;
+    background-image: url("https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=600");
+    background-size: cover;
+    border-radius: 20px;
+    background-position: center; 
+    background-repeat: no-repeat;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+
+   
+  }
+  .home-header > div{
+    height: 48%;
+  }
+  
+  .main > div , .main > h1{
+    margin: 50px auto;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 30%;
+  }
+  
+  .home-header button {
+    padding: 15px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: 800;
+  }
+  
+  .learnmore {
+    background-color: rgb(26, 223, 82);
+    color: black;
+  }
+  
+  .signup {
+    background-color: white;
+    color: black;
+  }
+  
+
+  .hwh{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hwh div{
+    width: 23%;
+    border-radius: 20px;
+  }
+  .hwh img{
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+  }
+  .hwh span{
+    color: green;
+  }
+
+  .tbc h1{
+text-align: center;
+  }
+  .images img{
+    width: 18%;
+    height: 170px;
+    border-radius: 15px;
+  }
+  .images {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .consultation{
+    background-color: rgb(26, 223, 82);
+    border: none;
+    font-weight: 800;
+    padding: 15px ;
+  }

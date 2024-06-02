@@ -1,0 +1,42 @@
+.login-main {
+  border: 2px solid green ;
+  width: 60%;
+  padding: 70px 0;
+  margin: auto;
+  text-align: center;
+
+}
+.login-main h1{
+    color: darkgreen;
+}
+
+
+.login-main input{
+    margin: 15px auto ;
+     background-color: rgba(0, 100, 0, 0.1);
+    
+}
+
+.login-main button{
+    padding: 15px 20px ;
+    display: block;
+    margin: 20px auto ;
+    width: 30%;
+
+    border: none;
+    background-color: darkgreen;
+    color: white;
+    font-weight: 700;
+}
+
+.login-main li {
+    list-style-type: none;
+   
+}
+.login-main li a {
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1em;
+
+}
